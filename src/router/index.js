@@ -1,15 +1,10 @@
 import express from 'express';
-import userController from './userController';
+import authApi from './api/auth';
+import userApi from './api/user';
 
 const router = express.Router();
 
-router
-  .route('/user')
-  .get(userController.getAllUsers)
-  .post(userController.createUser);
-
-router
-  .route('/user/:id')
-  .get(userController.getUserById);
+router.use('/auth', authApi);
+router.use('/user', userApi);
 
 module.exports = router;
